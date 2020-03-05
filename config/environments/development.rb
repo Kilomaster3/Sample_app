@@ -1,5 +1,5 @@
 Rails.application.configure do
- config.hosts.clear
+  config.hosts.clear
   config.cache_classes = false
 
   # Do not eager load code on boot.

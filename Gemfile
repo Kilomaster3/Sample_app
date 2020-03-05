@@ -28,7 +28,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development do
   gem 'rubocop', require: false
-end 
+end
 
 group :development, :test do
  gem 'sqlite3', '1.4.1'
