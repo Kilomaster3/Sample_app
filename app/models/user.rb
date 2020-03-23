@@ -73,8 +73,20 @@ class User < ApplicationRecord
     reset_sent_at < 7.hours.ago
   end
 
+  # Returns a user's status feed.
+  def feed
+    Micropost.where('user_id IN (?) OR user_id = ?', following_ids, id)
+  end
+
   def feed
     Micropost.where('user_id = ?', id)
+  end
+
+  def feed
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
   end
 
   # Follows a user.
